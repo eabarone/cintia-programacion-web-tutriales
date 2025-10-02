@@ -1,0 +1,105 @@
+/* ============================================
+   ESTILOS ESPECÍFICOS - DOM
+   ============================================ 
+   
+   Los estilos compartidos están en ../shared-styles.css
+   Este archivo solo contiene estilos específicos del proyecto DOM
+*/
+
+/* Contenedores específicos del DOM */
+.sample { 
+  border: 1px dashed var(--gray-300); 
+  background: var(--gray-25); 
+  border-radius: 10px; 
+  padding: 12px; 
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.label { 
+  display: block; 
+  margin-bottom: 6px; 
+  color: var(--gray-700); 
+}
+
+/* Árbol DOM visual */
+.dom-tree, .dom-tree ul { 
+  list-style: none; 
+  padding-left: 16px; 
+  overflow-x: auto;
+  max-width: 100%;
+}
+.dom-tree > li { font-weight: 600; color: var(--gray-700); }
+.dom-tree li { position: relative; }
+.dom-tree li::before {
+  content: "";
+  position: absolute;
+  left: -10px; top: 0.9em;
+  width: 8px; height: 1px; background: var(--gray-300);
+}
+
+/* Resaltado de selección */
+.highlight {
+  background: var(--green-100);
+  outline: 2px solid var(--green-700);
+  border-radius: 6px;
+}
+
+/* Lista dinámica */
+.list { display: grid; gap: 6px; padding-left: 16px; }
+.list li {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+/* Tablero de eventos */
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  min-height: 120px;
+  padding: 10px;
+  border: 1px solid var(--gray-300);
+  background: var(--gray-25);
+  border-radius: 8px;
+}
+.box {
+  background: var(--green-100);
+  border: 2px solid var(--green-200);
+  color: var(--green-700);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  height: 70px;
+  user-select: none;
+  cursor: pointer;
+  transition: transform .1s ease, box-shadow .2s ease;
+}
+.box:active { transform: scale(.98); }
+
+.log {
+  margin-top: 10px;
+  border: 1px dashed var(--gray-300);
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  max-height: 160px;
+  overflow: auto;
+  font-size: 12px;
+}
+.log-entry { padding: 4px 0; border-bottom: 1px dashed var(--gray-200); }
+.log-entry:last-child { border-bottom: none; }
+
+/* Responsive - Árbol DOM más compacto en móviles */
+@media (max-width: 640px) {
+  .dom-tree {
+    font-size: 0.875rem;
+    padding-left: 12px;
+  }
+  
+  .dom-tree ul {
+    padding-left: 12px;
+  }
+}

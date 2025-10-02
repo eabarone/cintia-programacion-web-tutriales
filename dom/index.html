@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM en JavaScript - Tutorial interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-green': '#10b981',
+                        'secondary-green': '#059669',
+                        'light-green': '#d1fae5',
+                        'dark-green': '#065f46',
+                        'primary-gray': '#374151',
+                        'dark-gray': '#1f2937'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../shared-styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-gray-50">
+    <!-- Barra de progreso sticky -->
+    <div class="sticky-progress mx-3 sm:mx-4 md:mx-6">
+        <div class="w-full px-3 sm:px-4 md:px-6 py-3">
+            <div class="flex items-center justify-between mb-2">
+                <h2 class="text-white font-semibold text-sm sm:text-base">📚 Tutorial DOM</h2>
+                <span class="text-white text-xs sm:text-sm opacity-90">Progreso: <span id="progress-text" class="font-bold">0%</span></span>
+            </div>
+            <div class="bg-white bg-opacity-20 rounded-full h-3 overflow-hidden">
+                <div id="progress-bar" class="progress-bar h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full px-3 sm:px-4 md:px-6 py-4 sm:py-6">
+      <main id="main-content" class="space-y-6 sm:space-y-8">
+      <section id="que-es" class="content-section">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold text-dark-gray mb-6">🌳 ¿Qué es el DOM?</h2>
+        <p>
+          El <strong>DOM (Document Object Model)</strong> es una representación en forma de
+          árbol de un documento HTML. Permite a JavaScript <em>leer</em> y <em>modificar</em>
+          la estructura, el contenido y los estilos de la página.
+        </p>
+        <div class="bg-gradient-to-br from-green-50 to-light-green rounded-lg p-6 mb-6">
+          <h3 class="text-2xl font-semibold text-dark-green mb-4">💡 Idea clave</h3>
+          <p class="text-lg text-gray-700">El navegador convierte tu HTML en un árbol de nodos.
+          Cada etiqueta es un nodo y puedes interactuar con ellos desde JavaScript.</p>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 mt-4">
+          <div class="bg-white p-5 rounded-lg shadow-sm">
+            <h3 class="text-lg font-bold text-green-600 mb-3">🔑 Conceptos clave</h3>
+            <ul>
+              <li><strong>Nodo:</strong> unidad básica (elemento, texto, comentario).</li>
+              <li><strong>Elemento:</strong> nodo de tipo etiqueta (por ejemplo, <code>&lt;div&gt;</code>).</li>
+              <li><strong>Atributo:</strong> metadato de un elemento (por ejemplo, <code>id</code>, <code>class</code>).</li>
+              <li><strong>Árbol:</strong> relaciones padre ⇄ hijo entre nodos.</li>
+            </ul>
+          </div>
+          <div class="bg-white p-5 rounded-lg shadow-sm">
+            <h3 class="text-lg font-bold text-purple-600 mb-3">✨ Buenas prácticas</h3>
+            <ul>
+              <li>Separa estructura (HTML), estilo (CSS) y comportamiento (JS).</li>
+              <li>Usa <code>id</code> solo cuando sea necesario; prefiere <code>class</code> para estilos.</li>
+              <li>Piensa en accesibilidad: roles, etiquetas y orden de tabulación.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 mt-6">
+          <div class="interactive-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+            <h3 class="text-lg font-semibold text-dark-green mb-4">🌲 Estructura en árbol</h3>
+            <p>Una página se representa como nodos: <code>document</code> → <code>html</code> → <code>body</code> → elementos.</p>
+            <ul class="dom-tree">
+              <li>document
+                <ul>
+                  <li>html
+                    <ul>
+                      <li>head</li>
+                      <li>body
+                        <ul>
+                          <li>header</li>
+                          <li>main</li>
+                          <li>footer</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="interactive-card bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg border border-gray-200">
+            <h3 class="text-lg font-semibold text-dark-gray mb-4">🎮 Demostración rápida</h3>
+            <div class="bg-white p-4 rounded-lg mb-4 border-2 border-dashed border-gray-300 text-center" id="demo-que-es">
+              <p id="demo-qe-text" class="text-gray-700 mb-4">Este texto será actualizado por JavaScript.</p>
+              <button class="w-full bg-primary-green text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary-green transition-all hover-lift" id="btn-qe">▶️ Cambiar texto</button>
+            </div>
+            <pre class="code mt-3">
+const btn = document.getElementById('boton');
+const p = document.getElementById('texto');
+
+btn.addEventListener('click', () => {
+  p.textContent = '¡El DOM nos permite modificar este contenido dinámicamente!';
+  btn.textContent = 'Hecho';
+  setTimeout(() => { btn.textContent = 'Cambiar texto'; }, 1200);
+});
+            </pre>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <section id="acceso" class="content-section">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold text-dark-gray mb-6">🔍 Acceso a los elementos del DOM</h2>
+        <p>Formas comunes de acceder a nodos:</p>
+        <ul>
+          <li><code>document.getElementById("id")</code></li>
+          <li><code>document.querySelector("selector")</code> y <code>querySelectorAll</code></li>
+          <li>Recorridos desde un nodo: <code>element.children</code>, <code>parentElement</code>, <code>nextElementSibling</code></li>
+        </ul>
+        <div class="bg-light-green rounded-lg p-6 mb-6">
+          <h3 class="text-xl font-semibold text-dark-green mb-4">💡 Tip importante</h3>
+          <p class="text-gray-700"><code>querySelectorAll</code> devuelve un NodeList estático. Para usar métodos de array, conviértelo: <code>[...nodeList]</code>.</p>
+        </div>
+        <div class="bg-light-green rounded-lg p-6 mb-6">
+          <h3 class="text-xl font-semibold text-dark-green mb-4">💡 Consideraciones importantes</h3>
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="bg-white p-4 rounded-lg">
+            <h4 class="font-bold text-secondary-green mb-2">⚠️ Errores comunes</h4>
+            <ul>
+              <li>Buscar antes de que el DOM esté listo. Solución: <code>DOMContentLoaded</code>.</li>
+              <li>Confundir HTMLCollection (vivo) con NodeList (generalmente estático).</li>
+              <li>Olvidar el alcance del selector: puedes buscar dentro de un contenedor específico.</li>
+            </ul>
+          </div>
+          <div class="bg-white p-4 rounded-lg">
+            <h4 class="font-bold text-secondary-green mb-2">✅ Buenas prácticas</h4>
+            <ul>
+              <li>Prefiere <code>querySelector</code> por su flexibilidad con selectores CSS.</li>
+              <li>Guarda referencias a elementos usados frecuentemente.</li>
+              <li>Valida que el elemento existe antes de usarlo.</li>
+            </ul>
+          </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 mt-6">
+          <div class="interactive-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+            <h3 class="text-lg font-semibold text-dark-green mb-4">📝 Ejemplo</h3>
+            <pre class="code">
+const title = document.getElementById("titulo");
+const items = document.querySelectorAll(".item");
+            </pre>
+            <div class="sample mt-4" id="sample-acceso">
+              <h4 id="titulo">Lista de frutas</h4>
+              <ul>
+                <li class="item">Manzana</li>
+                <li class="item">Banana</li>
+                <li class="item especial">Kiwi</li>
+              </ul>
+            </div>
+          </div>
+          <div class="interactive-card bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg border border-gray-200">
+            <h3 class="text-lg font-semibold text-dark-gray mb-4">🎯 Prueba un selector</h3>
+            <div class="bg-white p-4 rounded-lg mb-4 border-2 border-dashed border-gray-300" id="demo-acceso">
+              <label for="selector-input" class="block mb-2 text-gray-700 font-medium">Escribe un selector CSS:</label>
+              <input id="selector-input" type="text" placeholder=".item, #titulo, li.especial" class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-2" />
+              <button class="w-full bg-primary-green text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary-green transition-all hover-lift" id="btn-probar-selector">🔍 Probar</button>
+              <p class="hint text-sm text-gray-600 mt-2">Se resaltarán los elementos que coincidan dentro del recuadro de ejemplo.</p>
+              <div class="result text-green-700 text-sm mt-1" id="selector-result" aria-live="polite"></div>
+            </div>
+            <pre class="code mt-3">
+const input = document.getElementById('caja-de-texto');
+const result = document.getElementById('resultado');
+const sample = document.getElementById('ejemplo');
+const btn = document.getElementById('boton-de-probar-selector');
+
+btn.addEventListener('click', () => {
+  // Quitar resaltado previo quitando la clase highlight
+  sample.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+  const selector = input.value.trim();
+  if (!selector) {
+    result.textContent = 'Escribe un selector para probar.';
+    return;
+  }
+  let nodes = sample.querySelectorAll(selector);
+  if (nodes.length === 0) {
+    result.textContent = 'No se encontraron coincidencias.';
+    return;
+  }
+  // Resaltar los nodos encontrados en color verde aplicando la clase highlight
+  nodes.forEach(n => n.classList.add('highlight'));
+  // Mostrar el número de coincidencias
+  result.textContent = `Coincidencias: ${nodes.length}`;
+});
+            </pre>
+          </div>
+        </div>
+        <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg mt-6">
+          <strong>Resumen rápido (Acceso):</strong>
+          <ul>
+            <li><code>getElementById</code>: el más rápido para un único id.</li>
+            <li><code>querySelector</code>: el más flexible para un solo elemento.</li>
+            <li><code>querySelectorAll</code>: colección estática de coincidencias.</li>
+            <li><code>closest</code>: busca el ancestro más cercano que cumpla un selector.</li>
+          </ul>
+        </div>
+        </div>
+      </section>
+
+      <section id="manipulacion" class="content-section">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold text-dark-gray mb-6">✏️ Manipulación del DOM</h2>
+        <p>Puedes crear, insertar, eliminar y modificar elementos y atributos.</p>
+        <ul>
+          <li><code>textContent</code>, <code>innerHTML</code></li>
+          <li><code>setAttribute</code>, <code>classList.add/remove/toggle</code></li>
+          <li><code>createElement</code>, <code>append</code>, <code>prepend</code>, <code>remove</code></li>
+        </ul>
+        <div class="bg-light-green rounded-lg p-6 mb-6">
+          <h3 class="text-xl font-semibold text-dark-green mb-4">💡 Recomendación</h3>
+          <p class="text-gray-700">Prefiere <code>textContent</code> sobre <code>innerHTML</code> cuando no necesites HTML; es más seguro y rápido.</p>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 mt-4">
+          <div class="bg-white p-4 rounded-lg">
+            <h3 class="font-bold text-secondary-green mb-2">⚡ Inserción eficiente</h3>
+            <p>Para añadir muchos elementos, usa <code>DocumentFragment</code> y realiza un solo render.</p>
+            <pre class="code">
+const frag = document.createDocumentFragment();
+for (let i = 1; i &lt;= 100; i++) {
+  const li = document.createElement('li');
+  li.textContent = `Item ${i}`;
+  frag.append(li);
+}
+lista.append(frag);
+            </pre>
+          </div>
+          <div class="bg-white p-4 rounded-lg">
+            <h3 class="font-bold text-secondary-green mb-2">🏷️ Clases y atributos</h3>
+            <pre class="code">
+el.classList.toggle('activo');
+el.setAttribute('aria-expanded', 'true');
+el.dataset.id = '123'; // data-id="123"
+            </pre>
+            <ul>
+              <li>Usa <code>dataset</code> para metadatos de UI.</li>
+              <li>Mantén sincronizados estados visuales (clases) y estados de accesibilidad (atributos ARIA).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 mt-6">
+          <div class="interactive-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+            <h3 class="text-lg font-semibold text-dark-green mb-4">📋 Ejemplo: lista dinámica</h3>
+            <div class="bg-white p-4 rounded-lg mb-4 border-2 border-dashed border-gray-300" id="demo-manipulacion">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <input id="nuevo-item" type="text" placeholder="Nuevo elemento" class="flex-1 border border-gray-300 rounded-lg px-3 py-2" />
+                <button class="bg-primary-green text-white px-4 py-2 rounded-lg font-semibold hover:bg-secondary-green transition-all hover-lift" id="btn-agregar">➕ Agregar</button>
+                <button class="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition-all hover-lift" id="btn-eliminar">🗑️ Eliminar último</button>
+              </div>
+              <ul id="lista-dinamica" class="list grid gap-1 pl-4"></ul>
+            </div>
+          </div>
+          <div class="interactive-card bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg border border-gray-200">
+            <h3 class="text-lg font-semibold text-dark-gray mb-4">💻 Ejemplo de código</h3>
+            <pre class="code">
+const li = document.createElement('li');
+li.textContent = 'Elemento';
+lista.append(li);
+            </pre>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 mt-6">
+          <div class="bg-white p-4 rounded-lg">
+            <h3 class="font-bold text-secondary-green mb-2">🔄 Patrones de actualización</h3>
+            <ul>
+              <li><strong>Reemplazo total:</strong> <code>container.replaceChildren(...nuevos)</code>.</li>
+              <li><strong>Actualización in-place:</strong> cambia solo texto/atributos necesarios.</li>
+              <li><strong>Templating básico:</strong> usa <code>template</code> en HTML y clónalo con JS.</li>
+            </ul>
+          </div>
+          <div class="bg-white p-4 rounded-lg">
+            <h3 class="font-bold text-secondary-green mb-2">📊 Medición de rendimiento</h3>
+            <ul>
+              <li>Minimiza reflows: escribe estilos juntos, evita lecturas tras escrituras.</li>
+              <li>Batching con <code>requestAnimationFrame</code> para animaciones.</li>
+              <li>Evita usar <code>innerHTML</code> en bucles de gran tamaño.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg mt-6">
+          <strong>Resumen rápido (Manipulación):</strong>
+          <ul>
+            <li><code>createElement</code>: crea un nuevo elemento.</li>
+            <li><code>append/prepend</code>: agrega elementos al final/principio.</li>
+            <li><code>remove</code>: elimina un elemento.</li>
+            <li><code>textContent</code>: cambia el texto de un elemento.</li>
+          </ul>
+        </div>
+        </div>
+      </section>
+
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
