@@ -1,6 +1,6 @@
 # 📚 Tutoriales JavaScript - Curso Interactivo
 
-Curso completo de JavaScript con tutoriales interactivos que cubren desde fundamentos hasta manipulación del DOM y manejo de eventos. Cada tutorial incluye ejemplos prácticos, ejercicios interactivos y un sistema de progreso que rastrea tu avance.
+Curso completo de JavaScript con tutoriales interactivos que cubren desde fundamentos hasta manipulación del DOM, manejo de eventos y formularios. Cada tutorial incluye ejemplos prácticos, ejercicios interactivos y un sistema de progreso que rastrea tu avance.
 
 ## 🗂️ Estructura del Proyecto
 
@@ -16,9 +16,13 @@ javascript-course/
 │   ├── index.html            # Tutorial del DOM
 │   ├── styles.css            # Estilos específicos (árbol DOM, resaltado)
 │   └── app.js                # Lógica interactiva y sistema de progreso
-└── eventos-funciones/
-    ├── index.html            # Tutorial de eventos y funciones
-    ├── styles.css            # Estilos específicos (vacío - usa solo compartidos)
+├── eventos-funciones/
+│   ├── index.html            # Tutorial de eventos y funciones
+│   ├── styles.css            # Estilos específicos (vacío - usa solo compartidos)
+│   └── app.js                # Lógica interactiva y sistema de progreso
+└── formularios/
+    ├── index.html            # Tutorial de formularios
+    ├── styles.css            # Estilos específicos (notificaciones, validación)
     └── app.js                # Lógica interactiva y sistema de progreso
 ```
 
@@ -43,6 +47,7 @@ Cada proyecto tiene su propio `styles.css` para estilos únicos:
 - **fundamentos/styles.css**: Tooltips, notificaciones, editor de código con syntax highlighting
 - **dom/styles.css**: Árbol DOM visual, resaltado de selección, listas dinámicas, tablero de eventos
 - **eventos-funciones/styles.css**: Vacío (usa solo estilos compartidos)
+- **formularios/styles.css**: Notificaciones, estilos de validación, inputs con estados
 
 ## 🚀 Despliegue en GitHub Pages
 
@@ -62,13 +67,15 @@ La estructura con `shared-styles.css` funciona perfectamente en GitHub Pages por
    ├── shared-styles.css
    ├── fundamentos/index.html
    ├── dom/index.html
-   └── eventos-funciones/index.html
+   ├── eventos-funciones/index.html
+   └── formularios/index.html
    ```
 
 2. **Acceso a los tutoriales**:
    - Fundamentos: `/fundamentos/`
    - DOM: `/dom/`
    - Eventos y Funciones: `/eventos-funciones/`
+   - Formularios: `/formularios/`
 
 3. **No requiere configuración especial**: GitHub Pages sirve archivos estáticos automáticamente
 
@@ -251,6 +258,48 @@ cd javascript-course/fundamentos
 
 ---
 
+### 4. **Formularios** 📝
+
+**Ruta**: `/formularios/`
+
+#### Temas Cubiertos:
+- **Formularios en HTML**
+  - Elementos principales (form, input, textarea, select, button)
+  - Tipos de input (text, email, password, number, checkbox, radio)
+  - Atributos importantes (action, method, name, id, placeholder, required)
+  - Estructura básica de formularios
+
+- **Validación con JavaScript**
+  - Patrón básico de validación
+  - Validación en tiempo real vs al enviar
+  - Feedback instantáneo al usuario
+  - Mensajes de error personalizados
+  - Validaciones complejas (coincidencia de contraseñas, formatos específicos)
+  - Expresiones regulares para validación
+
+- **JavaScript vs Atributos HTML**
+  - Comparación de enfoques
+  - Ventajas y desventajas de cada método
+  - Atributos HTML5 (required, minlength, maxlength, pattern, min, max)
+  - Validación nativa del navegador
+  - Mejor práctica: combinar ambos enfoques
+  - Seguridad: validación cliente vs servidor
+
+#### Ejemplos Interactivos:
+- 📝 Formulario básico con captura de datos
+- ✅ Validación JavaScript en tiempo real
+- 🏷️ Comparación HTML vs JavaScript lado a lado
+- 🎯 Proyecto final: Formulario de registro completo
+
+#### Sistema de Progreso:
+- Formulario básico: **15%**
+- Validación con JavaScript: **25%**
+- Probar validación HTML: **10%**
+- Probar validación JavaScript: **10%**
+- Proyecto final completo: **40%**
+
+---
+
 ## 💻 Características Técnicas
 
 ### **Sistema de Progreso Interactivo**
@@ -333,6 +382,7 @@ Cada tutorial es independiente y puede accederse directamente:
 - **Fundamentos**: `https://tu-usuario.github.io/javascript-course/fundamentos/`
 - **DOM**: `https://tu-usuario.github.io/javascript-course/dom/`
 - **Eventos y Funciones**: `https://tu-usuario.github.io/javascript-course/eventos-funciones/`
+- **Formularios**: `https://tu-usuario.github.io/javascript-course/formularios/`
 
 ---
 
@@ -340,13 +390,13 @@ Cada tutorial es independiente y puede accederse directamente:
 
 | Métrica | Valor |
 |---------|-------|
-| **Tutoriales** | 3 |
-| **Ejemplos interactivos** | 20+ |
-| **Líneas de código** | ~2,500 |
-| **Tareas de progreso** | 19 |
-| **Archivos CSS** | 4 (1 compartido + 3 específicos) |
-| **Archivos JavaScript** | 3 |
-| **Reducción de CSS** | ~37% gracias a shared-styles.css |
+| **Tutoriales** | 4 |
+| **Ejemplos interactivos** | 24+ |
+| **Líneas de código** | ~3,500 |
+| **Tareas de progreso** | 24 |
+| **Archivos CSS** | 5 (1 compartido + 4 específicos) |
+| **Archivos JavaScript** | 4 |
+| **Reducción de CSS** | ~40% gracias a shared-styles.css |
 
 ---
 

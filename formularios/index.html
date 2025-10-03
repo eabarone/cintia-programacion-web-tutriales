@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formularios en JavaScript - Tutorial interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-green': '#10b981',
+                        'secondary-green': '#059669',
+                        'light-green': '#d1fae5',
+                        'dark-green': '#065f46',
+                        'primary-gray': '#374151',
+                        'dark-gray': '#1f2937'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../shared-styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-gray-50">
+    <!-- Barra de progreso sticky -->
+    <div class="sticky-progress mx-3 sm:mx-4 md:mx-6">
+        <div class="w-full px-3 sm:px-4 md:px-6 py-3">
+            <div class="flex items-center justify-between mb-2">
+                <h2 class="text-white font-semibold text-sm sm:text-base">📚 Tutorial Formularios</h2>
+                <span class="text-white text-xs sm:text-sm opacity-90">Progreso: <span id="progress-text" class="font-bold">0%</span></span>
+            </div>
+            <div class="bg-white bg-opacity-20 rounded-full h-3 overflow-hidden">
+                <div id="progress-bar" class="progress-bar h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full px-3 sm:px-4 md:px-6 py-4 sm:py-6">
+      <main id="main-content" class="space-y-6 sm:space-y-8">
+        
+        <!-- Sección: Formularios en HTML -->
+        <section id="formularios-html-section" class="content-section">
+          <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-dark-gray mb-6">📝 Formularios en HTML</h2>
+            
+            <div class="bg-gradient-to-br from-green-50 to-light-green rounded-lg p-6 mb-6">
+              <h3 class="text-2xl font-semibold text-dark-green mb-4">💡 ¿Qué son los formularios?</h3>
+              <p class="text-lg text-gray-700 mb-4">
+                Los <strong>formularios</strong> son elementos HTML que permiten a los usuarios ingresar y enviar datos. 
+                Son fundamentales para la interacción en aplicaciones web: login, registro, búsquedas, comentarios, etc.
+              </p>
+              
+              <div class="grid md:grid-cols-2 gap-6 mt-6">
+                <div class="bg-white p-5 rounded-lg shadow-sm">
+                  <h4 class="text-lg font-bold text-green-600 mb-3">🎯 Elementos principales</h4>
+                  <ul class="text-gray-700 space-y-2">
+                    <li>• <strong>&lt;form&gt;:</strong> Contenedor del formulario</li>
+                    <li>• <strong>&lt;input&gt;:</strong> Campos de entrada</li>
+                    <li>• <strong>&lt;textarea&gt;:</strong> Texto multilínea</li>
+                    <li>• <strong>&lt;select&gt;:</strong> Listas desplegables</li>
+                    <li>• <strong>&lt;button&gt;:</strong> Botones de acción</li>
+                  </ul>
+                </div>
+                
+                <div class="bg-white p-5 rounded-lg shadow-sm">
+                  <h4 class="text-lg font-bold text-purple-600 mb-3">📋 Tipos de input</h4>
+                  <ul class="text-gray-700 space-y-2">
+                    <li>• <strong>text:</strong> Texto simple</li>
+                    <li>• <strong>email:</strong> Correo electrónico</li>
+                    <li>• <strong>password:</strong> Contraseña</li>
+                    <li>• <strong>number:</strong> Números</li>
+                    <li>• <strong>checkbox/radio:</strong> Selección</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Estructura básica -->
+            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 mb-6">
+              <h3 class="text-2xl font-semibold text-dark-gray mb-4">🔍 Estructura básica de un formulario</h3>
+              <pre class="code">
+&lt;form id="miFormulario" action="/enviar" method="POST"&gt;
+  &lt;!-- Campo de texto --&gt;
+  &lt;label for="nombre"&gt;Nombre:&lt;/label&gt;
+  &lt;input type="text" id="nombre" name="nombre" required&gt;
+  
+  &lt;!-- Campo de email --&gt;
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
+  
+  &lt;!-- Botón de envío --&gt;
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+              </pre>
+            </div>
+
+            <!-- Ejemplo interactivo -->
+            <div class="interactive-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+              <h3 class="text-2xl font-semibold text-dark-green mb-4">🎮 Ejemplo: formulario básico</h3>
+              <p class="text-gray-700 mb-4">Completa este formulario para ver cómo funciona:</p>
+              
+              <div class="bg-white p-6 rounded-lg mb-4 border-2 border-dashed border-gray-300">
+                <form id="form-basico" class="space-y-4">
+                  <div>
+                    <label for="nombre-basico" class="block text-sm font-medium text-gray-700 mb-1">Nombre completo:</label>
+                    <input type="text" id="nombre-basico" name="nombre" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Juan Pérez">
+                  </div>
+                  
+                  <div>
+                    <label for="email-basico" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico:</label>
+                    <input type="email" id="email-basico" name="email" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="juan@ejemplo.com">
+                  </div>
+                  
+                  <div>
+                    <label for="edad-basico" class="block text-sm font-medium text-gray-700 mb-1">Edad:</label>
+                    <input type="number" id="edad-basico" name="edad" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="25" min="1" max="120">
+                  </div>
+                  
+                  <button type="submit" class="w-full bg-primary-green text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary-green transition-all hover-lift">
+                    📤 Enviar formulario
+                  </button>
+                </form>
+                
+                <div id="resultado-basico" class="mt-4 p-4 bg-gray-50 rounded-lg hidden">
+                  <h4 class="font-bold text-green-700 mb-2">✅ Datos recibidos:</h4>
+                  <div id="datos-basico" class="text-sm text-gray-700"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Atributos importantes -->
+            <div class="bg-light-green rounded-lg p-6 mt-6">
+              <h3 class="text-xl font-semibold text-dark-green mb-4">🏷️ Atributos importantes</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-lg">
+                  <h4 class="font-bold text-secondary-green mb-2">Atributos del &lt;form&gt;</h4>
+                  <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• <code>action</code>: URL donde se envían los datos</li>
+                    <li>• <code>method</code>: GET o POST</li>
+                    <li>• <code>enctype</code>: Tipo de codificación</li>
+                    <li>• <code>novalidate</code>: Desactiva validación HTML5</li>
+                  </ul>
+                </div>
+                <div class="bg-white p-4 rounded-lg">
+                  <h4 class="font-bold text-secondary-green mb-2">Atributos del &lt;input&gt;</h4>
+                  <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• <code>type</code>: Tipo de campo</li>
+                    <li>• <code>name</code>: Nombre del campo (clave)</li>
+                    <li>• <code>id</code>: Identificador único</li>
+                    <li>• <code>placeholder</code>: Texto de ayuda</li>
+                    <li>• <code>required</code>: Campo obligatorio</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección: Validación con JavaScript -->
+        <section id="validacion-js-section" class="content-section">
+          <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-dark-gray mb-6">✅ Validación de formularios con JavaScript</h2>
+            
+            <div class="bg-gradient-to-br from-green-50 to-light-green rounded-lg p-6 mb-6">
+              <h3 class="text-2xl font-semibold text-dark-green mb-4">💡 ¿Por qué validar con JavaScript?</h3>
+              <p class="text-lg text-gray-700 mb-4">
+                La validación con JavaScript permite crear <strong>experiencias de usuario más ricas</strong> con:
+                feedback instantáneo, validaciones personalizadas, y mejor control sobre el comportamiento del formulario.
+              </p>
+              
+              <div class="grid md:grid-cols-3 gap-4 mt-6">
+                <div class="bg-white p-4 rounded-lg border border-green-200">
+                  <div class="text-2xl mb-2">⚡</div>
+                  <h4 class="font-bold text-green-700 mb-2">Feedback inmediato</h4>
+                  <p class="text-sm text-gray-600">Valida mientras el usuario escribe</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg border border-green-200">
+                  <div class="text-2xl mb-2">🎨</div>
+                  <h4 class="font-bold text-secondary-green mb-2">Personalización</h4>
+                  <p class="text-sm text-gray-600">Mensajes y estilos personalizados</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg border border-green-200">
+                  <div class="text-2xl mb-2">🔒</div>
+                  <h4 class="font-bold text-dark-green mb-2">Validaciones complejas</h4>
+                  <p class="text-sm text-gray-600">Lógica de negocio personalizada</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Patrón básico de validación -->
+            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 mb-6">
+              <h3 class="text-2xl font-semibold text-dark-gray mb-4">🔧 Patrón básico de validación</h3>
+              <pre class="code">
+const form = document.getElementById('miFormulario');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevenir envío por defecto
+  
+  // Obtener valores
+  const nombre = document.getElementById('nombre').value;
+  const email = document.getElementById('email').value;
+  
+  // Validar
+  if (nombre.trim() === '') {
+    mostrarError('nombre', 'El nombre es obligatorio');
+    return;
+  }
+  
+  if (!validarEmail(email)) {
+    mostrarError('email', 'Email inválido');
+    return;
+  }
+  
+  // Si todo está bien, enviar
+  console.log('Formulario válido!');
+  form.submit();
+});
+
+function validarEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+              </pre>
+            </div>
+
+            <!-- Ejemplo interactivo de validación JS -->
+            <div class="interactive-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+              <h3 class="text-2xl font-semibold text-dark-green mb-4">🎮 Ejemplo: validación con JavaScript</h3>
+              <p class="text-gray-700 mb-4">Este formulario tiene validación personalizada con JavaScript:</p>
+              
+              <div class="bg-white p-6 rounded-lg mb-4 border-2 border-dashed border-gray-300">
+                <form id="form-validacion-js" class="space-y-4">
+                  <div>
+                    <label for="username-js" class="block text-sm font-medium text-gray-700 mb-1">
+                      Usuario: <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="username-js" name="username" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="mínimo 4 caracteres">
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-username-js"></p>
+                    <p class="success-message text-green-600 text-sm mt-1 hidden" id="success-username-js">✓ Usuario válido</p>
+                  </div>
+                  
+                  <div>
+                    <label for="email-js" class="block text-sm font-medium text-gray-700 mb-1">
+                      Email: <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="email-js" name="email" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="ejemplo@correo.com">
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-email-js"></p>
+                    <p class="success-message text-green-600 text-sm mt-1 hidden" id="success-email-js">✓ Email válido</p>
+                  </div>
+                  
+                  <div>
+                    <label for="password-js" class="block text-sm font-medium text-gray-700 mb-1">
+                      Contraseña: <span class="text-red-500">*</span>
+                    </label>
+                    <input type="password" id="password-js" name="password" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="mínimo 8 caracteres">
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-password-js"></p>
+                    <p class="success-message text-green-600 text-sm mt-1 hidden" id="success-password-js">✓ Contraseña válida</p>
+                  </div>
+                  
+                  <div>
+                    <label for="confirm-password-js" class="block text-sm font-medium text-gray-700 mb-1">
+                      Confirmar contraseña: <span class="text-red-500">*</span>
+                    </label>
+                    <input type="password" id="confirm-password-js" name="confirmPassword" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="repite la contraseña">
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-confirm-password-js"></p>
+                    <p class="success-message text-green-600 text-sm mt-1 hidden" id="success-confirm-password-js">✓ Las contraseñas coinciden</p>
+                  </div>
+                  
+                  <button type="submit" class="w-full bg-primary-green text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary-green transition-all hover-lift">
+                    🔐 Registrarse
+                  </button>
+                </form>
+                
+                <div id="resultado-validacion-js" class="mt-4 p-4 bg-green-50 rounded-lg hidden">
+                  <h4 class="font-bold text-green-700 mb-2">🎉 ¡Registro exitoso!</h4>
+                  <p class="text-sm text-gray-700">Todos los campos son válidos.</p>
+                </div>
+              </div>
+              
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-gray-700 mb-2">📋 Reglas de validación:</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                  <li>• Usuario: mínimo 4 caracteres, sin espacios</li>
+                  <li>• Email: formato válido (ejemplo@dominio.com)</li>
+                  <li>• Contraseña: mínimo 8 caracteres</li>
+                  <li>• Confirmar contraseña: debe coincidir con la contraseña</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Técnicas de validación -->
+            <div class="bg-light-green rounded-lg p-6 mt-6">
+              <h3 class="text-xl font-semibold text-dark-green mb-4">🛠️ Técnicas de validación</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-lg">
+                  <h4 class="font-bold text-secondary-green mb-2">Validación en tiempo real</h4>
+                  <pre class="code text-xs">
+input.addEventListener('input', (e) => {
+  const valor = e.target.value;
+  if (validar(valor)) {
+    mostrarExito();
+  } else {
+    mostrarError();
+  }
+});
+                  </pre>
+                </div>
+                <div class="bg-white p-4 rounded-lg">
+                  <h4 class="font-bold text-secondary-green mb-2">Validación al enviar</h4>
+                  <pre class="code text-xs">
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  if (validarTodoElFormulario()) {
+    enviarDatos();
+  }
+});
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección: JavaScript vs HTML -->
+        <section id="comparacion-section" class="content-section">
+          <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-dark-gray mb-6">⚖️ Validación JavaScript vs Atributos HTML</h2>
+            
+            <div class="bg-gradient-to-br from-green-50 to-light-green rounded-lg p-6 mb-6">
+              <h3 class="text-2xl font-semibold text-dark-green mb-4">💡 Dos enfoques, diferentes propósitos</h3>
+              <p class="text-lg text-gray-700 mb-4">
+                HTML5 ofrece validación nativa con atributos, mientras que JavaScript permite validaciones personalizadas. 
+                <strong>La mejor práctica es combinar ambos enfoques</strong> para máxima seguridad y mejor experiencia de usuario.
+              </p>
+            </div>
+
+            <!-- Tabla comparativa -->
+            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 mb-6">
+              <h3 class="text-2xl font-semibold text-dark-gray mb-4">📊 Comparación</h3>
+              
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="bg-gray-200">
+                      <th class="border border-gray-300 px-4 py-2">Característica</th>
+                      <th class="border border-gray-300 px-4 py-2">Atributos HTML</th>
+                      <th class="border border-gray-300 px-4 py-2">JavaScript</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="border border-gray-300 px-4 py-2 font-semibold">Facilidad</td>
+                      <td class="border border-gray-300 px-4 py-2">✅ Muy fácil, solo atributos</td>
+                      <td class="border border-gray-300 px-4 py-2">⚠️ Requiere código</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                      <td class="border border-gray-300 px-4 py-2 font-semibold">Personalización</td>
+                      <td class="border border-gray-300 px-4 py-2">❌ Limitada</td>
+                      <td class="border border-gray-300 px-4 py-2">✅ Total control</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-gray-300 px-4 py-2 font-semibold">Mensajes de error</td>
+                      <td class="border border-gray-300 px-4 py-2">⚠️ Genéricos del navegador</td>
+                      <td class="border border-gray-300 px-4 py-2">✅ Personalizados</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                      <td class="border border-gray-300 px-4 py-2 font-semibold">Compatibilidad</td>
+                      <td class="border border-gray-300 px-4 py-2">✅ Nativa en HTML5</td>
+                      <td class="border border-gray-300 px-4 py-2">✅ Universal</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-gray-300 px-4 py-2 font-semibold">Validaciones complejas</td>
+                      <td class="border border-gray-300 px-4 py-2">❌ No soporta</td>
+                      <td class="border border-gray-300 px-4 py-2">✅ Cualquier lógica</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                      <td class="border border-gray-300 px-4 py-2 font-semibold">Seguridad</td>
+                      <td class="border border-gray-300 px-4 py-2">⚠️ Solo cliente</td>
+                      <td class="border border-gray-300 px-4 py-2">⚠️ Solo cliente</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded">
+                <p class="text-sm text-yellow-800">
+                  <strong>⚠️ Importante:</strong> La validación del lado del cliente (HTML o JS) puede ser desactivada. 
+                  Siempre valida también en el servidor para seguridad real.
+                </p>
+              </div>
+            </div>
+
+            <!-- Ejemplos lado a lado -->
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+              <!-- Validación HTML -->
+              <div class="interactive-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200">
+                <h3 class="text-xl font-semibold text-blue-800 mb-4">🏷️ Con atributos HTML</h3>
+                
+                <div class="bg-white p-4 rounded-lg mb-4">
+                  <pre class="code text-xs">
+&lt;form&gt;
+  &lt;input type="email" 
+         required 
+         minlength="5"
+         maxlength="50"
+         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"&gt;
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+                  </pre>
+                </div>
+                
+                <form id="form-html" class="space-y-3">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email:</label>
+                    <input 
+                      type="email" 
+                      required 
+                      minlength="5"
+                      maxlength="50"
+                      class="w-full border border-gray-300 rounded-lg px-3 py-2"
+                      placeholder="Intenta enviar vacío">
+                  </div>
+                  <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-all">
+                    Enviar (HTML)
+                  </button>
+                </form>
+                
+                <div class="mt-3 text-xs text-gray-600">
+                  <strong>Características:</strong>
+                  <ul class="list-disc list-inside mt-1">
+                    <li>Validación automática</li>
+                    <li>Mensajes del navegador</li>
+                    <li>Sin código JS necesario</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Validación JavaScript -->
+              <div class="interactive-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+                <h3 class="text-xl font-semibold text-dark-green mb-4">⚡ Con JavaScript</h3>
+                
+                <div class="bg-white p-4 rounded-lg mb-4">
+                  <pre class="code text-xs">
+&lt;form id="form"&gt;
+  &lt;input type="text" id="email"&gt;
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // Validación personalizada
+});
+&lt;/script&gt;
+                  </pre>
+                </div>
+                
+                <form id="form-js-comparacion" class="space-y-3">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email:</label>
+                    <input 
+                      type="text" 
+                      id="email-comparacion"
+                      class="w-full border border-gray-300 rounded-lg px-3 py-2"
+                      placeholder="Intenta enviar vacío">
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-comparacion"></p>
+                  </div>
+                  <button type="submit" class="w-full bg-primary-green text-white py-2 px-4 rounded-lg hover:bg-secondary-green transition-all">
+                    Enviar (JavaScript)
+                  </button>
+                </form>
+                
+                <div class="mt-3 text-xs text-gray-600">
+                  <strong>Características:</strong>
+                  <ul class="list-disc list-inside mt-1">
+                    <li>Mensajes personalizados</li>
+                    <li>Control total del flujo</li>
+                    <li>Validaciones complejas</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Atributos HTML5 -->
+            <div class="bg-light-green rounded-lg p-6 mb-6">
+              <h3 class="text-xl font-semibold text-dark-green mb-4">🏷️ Atributos HTML5 de validación</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-lg">
+                  <h4 class="font-bold text-secondary-green mb-2">Atributos básicos</h4>
+                  <ul class="text-sm text-gray-700 space-y-1">
+                    <li>• <code>required</code>: Campo obligatorio</li>
+                    <li>• <code>minlength</code> / <code>maxlength</code>: Longitud</li>
+                    <li>• <code>min</code> / <code>max</code>: Rango numérico</li>
+                    <li>• <code>pattern</code>: Expresión regular</li>
+                    <li>• <code>type</code>: email, url, number, tel, etc.</li>
+                  </ul>
+                </div>
+                <div class="bg-white p-4 rounded-lg">
+                  <h4 class="font-bold text-secondary-green mb-2">Ejemplo de uso</h4>
+                  <pre class="code text-xs">
+&lt;!-- Email obligatorio --&gt;
+&lt;input type="email" required&gt;
+
+&lt;!-- Edad entre 18 y 100 --&gt;
+&lt;input type="number" min="18" max="100"&gt;
+
+&lt;!-- Teléfono con patrón --&gt;
+&lt;input type="tel" 
+       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"&gt;
+                  </pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mejor práctica: Combinación -->
+            <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-dark-green mb-4">✨ Mejor práctica: Combinar ambos</h3>
+              <p class="text-gray-700 mb-4">
+                Usa atributos HTML para validación básica y JavaScript para lógica compleja y mejor UX:
+              </p>
+              
+              <div class="bg-white p-4 rounded-lg">
+                <pre class="code text-sm">
+&lt;form id="form-completo"&gt;
+  &lt;!-- HTML: validación básica --&gt;
+  &lt;input type="email" 
+         id="email" 
+         required 
+         minlength="5"&gt;
+  
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+// JavaScript: validación personalizada adicional
+const form = document.getElementById('form-completo');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const email = document.getElementById('email').value;
+  
+  // Validación personalizada: dominio específico
+  if (!email.endsWith('@miempresa.com')) {
+    alert('Solo emails de @miempresa.com');
+    return;
+  }
+  
+  // Si pasa todas las validaciones
+  console.log('Formulario válido!');
+});
+&lt;/script&gt;
+                </pre>
+              </div>
+              
+              <div class="mt-4 p-3 bg-green-50 rounded-lg">
+                <p class="text-sm text-green-800">
+                  <strong>💡 Ventajas de combinar:</strong> Validación rápida con HTML + control fino con JavaScript + 
+                  mejor experiencia de usuario + código más mantenible.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección: Proyecto final -->
+        <section id="proyecto-final-section" class="content-section">
+          <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-dark-gray mb-6">🎯 Proyecto final: formulario completo</h2>
+            
+            <div class="bg-gradient-to-br from-green-50 to-light-green rounded-lg p-6 mb-6">
+              <h3 class="text-2xl font-semibold text-dark-green mb-4">🚀 Pon en práctica todo lo aprendido</h3>
+              <p class="text-lg text-gray-700">
+                Este formulario combina validación HTML5 y JavaScript para crear una experiencia completa.
+              </p>
+            </div>
+
+            <div class="interactive-card bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg border border-gray-200">
+              <h3 class="text-xl font-semibold text-dark-gray mb-4">📋 Formulario de Registro Completo</h3>
+              
+              <div class="bg-white p-6 rounded-lg mb-4 border-2 border-dashed border-gray-300">
+                <form id="form-proyecto-final" class="space-y-4">
+                  <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label for="nombre-final" class="block text-sm font-medium text-gray-700 mb-1">
+                        Nombre: <span class="text-red-500">*</span>
+                      </label>
+                      <input 
+                        type="text" 
+                        id="nombre-final" 
+                        name="nombre"
+                        required
+                        minlength="2"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                      <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-nombre-final"></p>
+                    </div>
+                    
+                    <div>
+                      <label for="apellido-final" class="block text-sm font-medium text-gray-700 mb-1">
+                        Apellido: <span class="text-red-500">*</span>
+                      </label>
+                      <input 
+                        type="text" 
+                        id="apellido-final" 
+                        name="apellido"
+                        required
+                        minlength="2"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                      <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-apellido-final"></p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label for="email-final" class="block text-sm font-medium text-gray-700 mb-1">
+                      Email: <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                      type="email" 
+                      id="email-final" 
+                      name="email"
+                      required
+                      class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-email-final"></p>
+                  </div>
+                  
+                  <div>
+                    <label for="telefono-final" class="block text-sm font-medium text-gray-700 mb-1">
+                      Teléfono: <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                      type="tel" 
+                      id="telefono-final" 
+                      name="telefono"
+                      required
+                      pattern="[0-9]{10}"
+                      placeholder="10 dígitos"
+                      class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-telefono-final"></p>
+                    <p class="text-xs text-gray-500 mt-1">Formato: 10 dígitos sin espacios ni guiones</p>
+                  </div>
+                  
+                  <div>
+                    <label for="edad-final" class="block text-sm font-medium text-gray-700 mb-1">
+                      Edad: <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                      type="number" 
+                      id="edad-final" 
+                      name="edad"
+                      required
+                      min="18"
+                      max="120"
+                      class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-edad-final"></p>
+                    <p class="text-xs text-gray-500 mt-1">Debes ser mayor de 18 años</p>
+                  </div>
+                  
+                  <div>
+                    <label for="pais-final" class="block text-sm font-medium text-gray-700 mb-1">
+                      País: <span class="text-red-500">*</span>
+                    </label>
+                    <select 
+                      id="pais-final" 
+                      name="pais"
+                      required
+                      class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                      <option value="">Selecciona un país</option>
+                      <option value="mexico">México</option>
+                      <option value="argentina">Argentina</option>
+                      <option value="colombia">Colombia</option>
+                      <option value="espana">España</option>
+                      <option value="otro">Otro</option>
+                    </select>
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-pais-final"></p>
+                  </div>
+                  
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Intereses: <span class="text-red-500">*</span>
+                    </label>
+                    <div class="space-y-2">
+                      <label class="flex items-center">
+                        <input type="checkbox" name="intereses" value="programacion" class="mr-2">
+                        <span class="text-sm">Programación</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input type="checkbox" name="intereses" value="diseno" class="mr-2">
+                        <span class="text-sm">Diseño</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input type="checkbox" name="intereses" value="marketing" class="mr-2">
+                        <span class="text-sm">Marketing</span>
+                      </label>
+                    </div>
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-intereses-final"></p>
+                  </div>
+                  
+                  <div>
+                    <label class="flex items-center">
+                      <input type="checkbox" id="terminos-final" name="terminos" required class="mr-2">
+                      <span class="text-sm">Acepto los términos y condiciones <span class="text-red-500">*</span></span>
+                    </label>
+                    <p class="error-message text-red-500 text-sm mt-1 hidden" id="error-terminos-final"></p>
+                  </div>
+                  
+                  <button type="submit" class="w-full bg-primary-green text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary-green transition-all hover-lift">
+                    🎉 Completar Registro
+                  </button>
+                </form>
+                
+                <div id="resultado-proyecto-final" class="mt-4 p-4 bg-green-50 rounded-lg hidden">
+                  <h4 class="font-bold text-green-700 mb-3">✅ ¡Registro completado exitosamente!</h4>
+                  <div id="datos-proyecto-final" class="text-sm text-gray-700 space-y-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
