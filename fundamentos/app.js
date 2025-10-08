@@ -121,7 +121,7 @@ function practicaVariables() {
     
     let resultado = `
         <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
-            <h3 class="text-2xl font-bold text-green-800 mb-4">👤 Perfil de Programador Creado</h3>
+            <h3 class="text-2xl font-bold text-green-800 mb-4">👤 Perfil de programador creado</h3>
             <div class="bg-white p-4 rounded-lg mb-4">
                 <p class="mb-2"><strong>Nombre:</strong> ${usuario.nombre}</p>
                 <p class="mb-2"><strong>Edad:</strong> ${usuario.edad} años</p>
@@ -235,7 +235,7 @@ function practicaAritmetica() {
     
     let contenido = `
         <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
-            <h3 class="text-2xl font-bold text-green-800 mb-4">🧮 Calculadora Interactiva</h3>
+            <h3 class="text-2xl font-bold text-green-800 mb-4">🧮 Calculadora interactiva</h3>
             
             <div class="bg-white p-6 rounded-lg mb-4 text-center">
                 <div class="text-4xl font-bold text-green-600 mb-2">${num1} ${operador} ${num2} = ${resultado}</div>
@@ -280,7 +280,7 @@ function practicaComparacion() {
     
     let contenido = `
         <div class="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-lg">
-            <h3 class="text-2xl font-bold text-dark-gray mb-4">🎯 Juego de Comparaciones</h3>
+            <h3 class="text-2xl font-bold text-dark-gray mb-4">🎯 Juego de comparaciones</h3>
             
             <div class="bg-white p-4 rounded-lg mb-4 text-center">
                 <div class="text-3xl font-bold mb-4">Números: ${num1} y ${num2}</div>
@@ -318,7 +318,7 @@ function practicaLogica() {
     
     let contenido = `
         <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
-            <h3 class="text-2xl font-bold text-dark-green mb-4">🧩 Puzzle Lógico: ¿Puedes conducir?</h3>
+            <h3 class="text-2xl font-bold text-dark-green mb-4">🧩 Puzzle lógico: ¿Puedes conducir?</h3>
             
             <div class="bg-white p-4 rounded-lg mb-4">
                 <h4 class="font-semibold mb-3">📋 Datos ingresados:</h4>
@@ -393,7 +393,7 @@ function practicaCondicionales() {
     
     let contenido = `
         <div class="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-lg">
-            <h3 class="text-2xl font-bold text-dark-gray mb-4">🎭 Simulador de Decisiones</h3>
+            <h3 class="text-2xl font-bold text-dark-gray mb-4">🎭 Simulador de decisiones</h3>
             
             <div class="bg-white p-4 rounded-lg mb-4">
                 <div class="text-center mb-4">
@@ -487,7 +487,7 @@ function practicaSwitch() {
     
     let contenido = `
         <div class="bg-gradient-to-r from-indigo-50 to-indigo-100 p-6 rounded-lg">
-            <h3 class="text-2xl font-bold text-indigo-800 mb-4">🎮 Menú de Días de la Semana</h3>
+            <h3 class="text-2xl font-bold text-indigo-800 mb-4">🎮 Menú de días de la semana</h3>
             
             <div class="bg-white p-6 rounded-lg mb-4 text-center">
                 <div class="text-4xl mb-2">${dia === 6 || dia === 7 ? '🎉' : '💼'}</div>
@@ -538,7 +538,7 @@ function practicaFor() {
     
     let contenido = `
         <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
-            <h3 class="text-2xl font-bold text-dark-green mb-4">🎯 Contador Visual</h3>
+            <h3 class="text-2xl font-bold text-dark-green mb-4">🎯 Contador visual</h3>
             
             <div class="bg-white p-4 rounded-lg mb-4">
                 <h4 class="font-semibold mb-3">📊 Contando de 0 a ${limite} (paso: ${paso})</h4>
@@ -590,7 +590,7 @@ function practicaWhile() {
     
     let contenido = `
         <div class="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-lg">
-            <h3 class="text-2xl font-bold text-dark-gray mb-4">🎲 Juego de Adivinanza</h3>
+            <h3 class="text-2xl font-bold text-dark-gray mb-4">🎲 Juego de adivinanza</h3>
             
             <div class="bg-white p-4 rounded-lg mb-4">
                 <div class="text-center mb-4">
@@ -657,7 +657,7 @@ function practicaForEach() {
     
     let contenido = `
         <div class="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg">
-            <h3 class="text-2xl font-bold text-secondary-green mb-4">📋 Lista de Tareas Interactiva</h3>
+            <h3 class="text-2xl font-bold text-secondary-green mb-4">📋 Lista de tareas interactiva</h3>
             
             <div class="bg-white p-4 rounded-lg mb-4">
                 <h4 class="font-semibold mb-3">✅ Estado de las tareas:</h4>
